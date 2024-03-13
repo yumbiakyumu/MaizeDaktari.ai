@@ -19,3 +19,10 @@ const toggleNavbar = function () {
     overlay.classList.toggle("active");
 }
 addEventOnElem(navTogglers, "click", toggleNavbar);
+
+const closeNavbar = function () {
+  navbar.classList.remove("active");
+  overlay.classList.remove("active");
+}
+
+addEventOnElem(navLinks, "click", closeNavbar);

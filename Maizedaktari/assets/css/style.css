@@ -1,5 +1,10 @@
-
-*{
+:root{
+  --cubic-in: cubic-bezier(0.51, 0.03, 0.64, 0.28);
+  --cubic-out: cubic-bezier(0.33, 0.85, 0.4, 0.96);
+}
+*
+::before,
+::after {
   margin: 0;
   padding: 0px;
   box-sizing: border-box;
@@ -12,7 +17,7 @@ a{
   color:inherit;
   
 }
-a,img,span,input,button{
+a,img,span,input,button, ion-icon{
   display: block;
 }
 
@@ -31,6 +36,9 @@ input{
 }
 button{
   cursor: pointer;
+}
+ion-icon{
+  pointer-events: none;
 }
 address{
   font-style: normal;
@@ -65,16 +73,7 @@ body{
   background-color: hsl(0, 0%, 70%);
 }
 
-.header{
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: white;
-  padding-block: 15px; 
-  z-index:  4;
-  transition: 0.25s ease;
-}
+
 .container{
   padding-inline:  15px;
 }
@@ -97,6 +96,18 @@ body{
   background-color: hsl(38, 100%, 50%);
 
 } 
+
+/* HEADER */
+.header{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: white;
+  padding-block: 15px; 
+  z-index:  4;
+  transition: 0.25s ease;
+}
 .header.active{
   box-shadow: 2px 4px 8px hsla(215, 20%, 16%, 0.15);
 }
@@ -105,18 +116,20 @@ body{
 display: flex;
 justify-content: space-between;
 align-items: center;
-gap: 15px;
+gap: 20px;
 }
 .logo
 {
 color: hsl(32, 24%, 14%);
-font-size: 25px;
+font-size: 28px;
 line-height: 1;
 font-weight: 700;
 }
 sup{
-  font-size: 15px;
-  color: hsl(165, 77%, 17%);
+font-size: 20px;
+color: hsl(165, 77%, 17%);
+line-height: 1;
+font-weight: 700;
 }
 
 .logo .span{
@@ -134,13 +147,13 @@ sup{
 .navbar{
   position: fixed;
   top:0;
-  left: 0;
-  max-width: -300px;
+  left: -300px;
+  max-width: 300px;
   width: 100%;
   height:100%;
   background-color: white;
   visibility: hidden;
-  transition: 0.25s cubic-bezier(0.51, 0.03, 0.64, 0.28) ;
+  transition:0.25s ease;
   z-index: 2;
 
 
@@ -148,7 +161,7 @@ sup{
 .navbar.active{
   transform: translateX(100%);
   visibility: visible;
-  transition: 0.5s cubic-bezier(0.33, 0.85, 0.4, 0.96);
+  transition: 0.25s ease;
 }
 .navbar .nav-toggle-btn{
   font-size: 30px;
@@ -175,7 +188,7 @@ sup{
   left: 0;
   bottom: 0;
   right: 0;
-  background-color: hsla(0, 0%, 0%, 0.5);
+  background-color: hsla(0, 0%, 100%, 0.5);
   opacity: 0;
   pointer-events: none;
   transition: 0.25s ease;
