@@ -57,15 +57,16 @@
         <div class="overlay" data-nav-toggler data-overlay></div>
       </div>
     </header>
-
+  
     <main>
       <article>
+        <!-- Hero Section -->
         <section
           class="section hero"
           aria-label="label"
           id="home"
           data-section
-          style="background-image: url('assets/images/hero-banner.jpg')"
+          style="background-image: url('assets/images/pexel\ 2.jpeg');"
         >
           <div class="container"></div>
           <p class="hero-subtitle">Maize Daktari</p>
@@ -77,6 +78,43 @@
           </p>
 
           <a href="#" class="btn btn-secondary">Diagonize</a>
+        </section>
+        <!-- Diagonize -->
+        <section class="section diagonize" aria-label="diagonize">
+          <div class="container">
+            <div class="diagonize">
+              <div class="card-icon">
+                <img src="assets/images/svg2.svg" width="60" height="60" alt="corn image">
+              </div>
+              <h3 class="h2 section-title">
+                <a href="#" class="card_title">Diagonize</a>
+              </h3>
+              <p class="card-text">
+                Diagnose your maize plant disease using our AI platform
+              </p>
+              <p class="card-text2">
+                Please submit your maize plant leaf image using the 
+                <span class="upload-image">Upload Image</span> box below 
+                or click the <span class="use-camera">Use Camera</span> to 
+                take a picture with your phone
+              </p>
+              <div class="diagonize-form-container">
+                <div class="diagonize-form">
+                  <form action="" class="form">
+                    <div class="form-group">
+                      <input type="file" id="image" class="form-control" accept="image/*">
+                    </div>
+                    <div class="form-group">
+                      <a href="#" class="use-camera" onclick="captureFromCamera(event)">Use Camera</a>
+                    </div>
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary" onclick="diagnose()">Diagnose</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
       </article>
     </main>

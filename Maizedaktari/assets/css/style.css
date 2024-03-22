@@ -97,6 +97,7 @@ body {
 }
 .section {
   padding-block: 60px;
+  margin-bottom: 20px;
 }
 
 .h1,
@@ -221,30 +222,95 @@ sup {
 /* HERO */
 
 .hero{
-  padding-block: 110px 80px;
+  padding-block: 200px 200px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 25%;
+  
 
-}
+} 
+
 .hero-subtitle{
-  color: hsla(165, 90%, 20%, 0.776);
+  color: hsl(38, 100%, 50%);
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing:1px;
+  margin-left: 5px;
 }
 .hero-title{
   margin-block: 20px 20px;
+  color: hsl(0, 0%, 100%);
+  margin-left: 5px;
 
 
 }
 .hero-text{
-  color: hsl(32, 24%, 14%);
+  color: hsl(90, 100%, 100%);
   font-weight: 600;
+  margin-left: 5px;
   
 }
 .hero .btn{
   margin-block: 20px;
+  margin-left: 5px;
 }
+
+/* Diagonize */
+.diagonize {
+  padding: 20px;
+ 
+  background-color: hsl(38, 100%, 50%);
+  color: hsl(0, 0%, 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.card-icon {
+  position: relative;
+  max-width: max-content;
+  background-color: hsl(165, 77%, 17%);
+  margin: auto; /* Center the card icon */
+  padding: 40px;
+  border-radius: 50%;
+  margin-bottom: 40px;
+}
+
+.card-title {
+  font-size: 2.4rem;
+  font-weight: 700;
+}
+
+.diagonize .card-text {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin: 20px 35px;
+}
+
+.diagonize .card-text2 {
+  color: black;
+}
+
+.diagonize .btn {
+  margin: 20px;
+  padding: 10px 30px;
+  display: inline-block;
+}
+
+.diagonize-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.diagonize-form-container a {
+  color: green; /* Make the link green */
+  text-decoration: none; /* Remove underline */
+}
+
+
+
+
 
