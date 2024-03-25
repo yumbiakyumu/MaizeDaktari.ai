@@ -226,13 +226,14 @@ sup {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 25%;
+  border-radius: 20px;
   
 
 } 
 
 .hero-subtitle{
   color: hsl(38, 100%, 50%);
-  font-size: 1.5rem;
+  font-size: 2.0rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing:1px;
