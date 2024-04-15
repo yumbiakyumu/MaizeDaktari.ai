@@ -116,6 +116,13 @@ body {
 .h3{
   font-size: 2rem;
 }
+.grid-list{
+  display: grid;
+  grid-template-columns:repeat( 1fr, 1fr, 1fr, 1fr) ;
+  grid-template-rows: repeat( 1fr, 1fr, 1fr, 1fr);
+  gap: 50px;
+
+}
 
 /* HEADER */
 .header {
@@ -258,30 +265,67 @@ sup {
 }
 
 /* Diagonize */
-.diagonize {
-  padding: 20px;
- 
-  background-color: hsl(38, 100%, 50%);
-  color: hsl(0, 0%, 100%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+
+.card, .content {
+  grid-column-start: 1;
+  grid-column-end: -1; /* Span to the end of the grid line */
+  grid-row-start: auto;
+  grid-row-end: auto;
+}
+@media screen and (min-width: 500px) {
+  .card {
+    grid-column-end: 2; /* Span to the second grid line on medium screens */
+  }
+  .content {
+    grid-column-start: 2;
+    grid-column-end: 4; /* Span to the fourth grid line on medium screens */
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card {
+    grid-column-end: 2; /* Span to the second grid line on large screens */
+  }
+  .content {
+    grid-column-start: 2;
+    grid-column-end: 4; /* Span to the fourth grid line on large screens */
+    grid-row-start: 1;
+    grid-row-end: 4;
+  }
+}
+.card-icon{
+  background-image: url("images/pexels-michael-fischer-614006.jpg");
+}
+
+
+.service-card{
+  padding-inline: 55px;
   text-align: center;
 }
 
-.card-icon {
+
+.service-card .card-icon {
   position: relative;
   max-width: max-content;
-  background-color: hsl(165, 77%, 17%);
-  margin: auto; /* Center the card icon */
-  padding: 40px;
+  margin-inline: auto;
+  padding-block: 50px 50px; 
   border-radius: 50%;
-  margin-bottom: 40px;
+  background-color: hsl(165, 77%, 17%);
+  
+
+
 }
+.section-title, .card-text, .card-text2, .diagonize-form-container{
+  text-align: center;
+}
+
 
 .card-title {
   font-size: 2.4rem;
   font-weight: 700;
+  
 }
 
 .diagonize .card-text {
