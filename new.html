@@ -1,37 +1,40 @@
-<div class="diagonize">
-              
-    <div class="img">
-      <img src="Maizedaktari/assets/images/undraw_data_input_fxv2.png" alt="" srcset="">
-    </div>
-  <div class="card-icon">
-    <img src="Maizedaktari/assets/images/svg2.svg" width="60" height="60" alt="corn image">
+<section class="section diagonize" aria-label="diagonize" data-section>
+  <div class="container">
+    <ul class="grid-list">
+      <li class="card">
+        
+      </li>
+      <li class="content">
+        <h3 class="h2 section-title">
+          <a href="#" class="card_title">Diagonize</a>
+        </h3>
+        <p class="card-text">
+          Diagnose your maize plant disease using our AI platform
+        </p>
+        <p class="card-text2">
+          Please submit your maize plant leaf image using the 
+          <span class="upload-image">Upload Image</span> box below 
+          or click the <span class="use-camera">Use Camera</span> to 
+          take a picture with your phone
+        </p>
+        <div class="diagonize-form-container">
+          <div class="diagonize-form">
+            <form action="" class="form">
+              <div class="form-group">
+                <input type="file" id="image" class="form-control" accept="image/*">
+              </div>
+              <div class="form-group">
+                <a href="#" class="use-camera" onclick="captureFromCamera(event)">Use Camera</a>
+              </div>
+              <div class="form-group">
+                <button type="button" class="btn btn-primary" onclick="diagnose()">Diagnose</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </li>
+    </ul>
   </div>
-  <h3 class="h2 section-title">
-    <a href="#" class="card_title">Diagonize</a>
-  </h3>
-  <p class="card-text">
-    Diagnose your maize plant disease using our AI platform
-  </p>
-  <p class="card-text2">
-    Please submit your maize plant leaf image using the 
-    <span class="upload-image">Upload Image</span> box below 
-    or click the <span class="use-camera">Use Camera</span> to 
-    take a picture with your phone
-  </p>
-  <div class="diagonize-form-container">
-    <div class="diagonize-form">
-      <form action="" class="form">
-        <div class="form-group">
-          <input type="file" id="image" class="form-control" accept="image/*">
-        </div>
-        <div class="form-group">
-          <a href="#" class="use-camera" onclick="captureFromCamera(event)">Use Camera</a>
-        </div>
-        <div class="form-group">
-          <button type="button" class="btn btn-primary" onclick="diagnose()">Diagnose</button>
-        </div>
-      </form>
-    </div>
-  </div>
+>
 
-</div>
+</section>

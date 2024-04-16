@@ -229,7 +229,7 @@ sup {
 /* HERO */
 
 .hero{
-  padding-block: 200px 200px;
+  padding-block: 200px 180px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 25%;
@@ -265,58 +265,45 @@ sup {
 }
 
 /* Diagonize */
-
-.card, .content {
-  grid-column-start: 1;
-  grid-column-end: -1; /* Span to the end of the grid line */
-  grid-row-start: auto;
-  grid-row-end: auto;
+.container1 {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-@media screen and (min-width: 500px) {
+
+.card {
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid hsl(38, 100%, 50%);
+
+}
+.content {
+  width: 100%;
+  border-radius: 20px;
+  border: 2px solid hsl(38, 100%, 50%);
+
+}
+@media screen and (min-width: 600px) {
+  .container1 {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
   .card {
-    grid-column-end: 2; /* Span to the second grid line on medium screens */
+    width: 30%;
   }
+
   .content {
-    grid-column-start: 2;
-    grid-column-end: 4; /* Span to the fourth grid line on medium screens */
-    grid-row-start: 1;
-    grid-row-end: 4;
+    width: 70%;
   }
 }
-
-@media screen and (min-width: 900px) {
-  .card {
-    grid-column-end: 2; /* Span to the second grid line on large screens */
-  }
-  .content {
-    grid-column-start: 2;
-    grid-column-end: 4; /* Span to the fourth grid line on large screens */
-    grid-row-start: 1;
-    grid-row-end: 4;
-  }
-}
-.card-icon{
-  background-image: url("images/pexels-michael-fischer-614006.jpg");
+.card{
+  background-image: url("https://images.unsplash.com/photo-1567547921486-f280c2f53b5d?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: center;
+  background-size: cover;
 }
 
 
-.service-card{
-  padding-inline: 55px;
-  text-align: center;
-}
-
-
-.service-card .card-icon {
-  position: relative;
-  max-width: max-content;
-  margin-inline: auto;
-  padding-block: 50px 50px; 
-  border-radius: 50%;
-  background-color: hsl(165, 77%, 17%);
-  
-
-
-}
 .section-title, .card-text, .card-text2, .diagonize-form-container{
   text-align: center;
 }
