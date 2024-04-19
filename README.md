@@ -1,4 +1,5 @@
-![image](https://github.com/yumbiakyumu/MaizeDaktari.ai/assets/100669436/18cc3dc3-ada2-49fc-a7df-c48451a57e77)
+![image](https://github.com/yumbiakyumu/MaizeDaktari.ai/assets/100669436/18cc3dc3-ada2-49fc-a7df-c48451a57e77) ![image](https://github.com/yumbiakyumu/MaizeDaktari.ai/assets/100669436/3ea7152e-6dc0-434f-aa71-70336f7e05c7)
+
 
 # Maize Daktari.ai
 
