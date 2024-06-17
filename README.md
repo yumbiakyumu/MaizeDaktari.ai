@@ -49,6 +49,7 @@ Leveraging Machine Learning to train the model used in diagnosis and detection
    pip install flask flask-cors tensorflow numpy Pillow
 
 6. Download the Machine Learning Model
+   
   The machine learning model used in this project is too large to be stored directly in the repository. To obtain the model file, follow these steps:
 
     1. Go to [this Google Drive link] (https://drive.google.com/file/d/1PgGQr-fmkIPOCX0tKJwqlIr7HEhaJne1/view?usp=sharing)
