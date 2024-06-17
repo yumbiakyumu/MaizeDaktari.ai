@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Maize Daktari Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style3.css') }}">
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+</head>
+<body>
+   <input type="checkbox" id="menu-toggle">
+    <div class="sidebar">
+        <div class="side-header">
+            <h3>Maize<span>Daktari</span></h3>
+        </div>
+        
+        <div class="side-content">
+            <div class="profile">
+                <div class="profile-img bg-img" style="background-image: url(img/3.jpeg)"></div>
+                <h4>Yumbia Kyumu</h4>
+                <small>Administrator</small>
+            </div>
+
+            <div class="side-menu">
+                <ul>
+                    <li>
+                       <a href="#home" class="active">
+                            <span class="las la-home"></span>
+                            <small>Home</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#user">
+                            <span class="las la-user-alt"></span>
+                            <small>Profile</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#mailbox">
+                            <span class="las la-envelope"></span>
+                            <small>Mailbox</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#analytics">
+                            <span class="las la-chart-pie"></span>
+                            <small>Analytics</small>
+                        </a>
+                    </li>
+                    <li>
+                       <a href="#tasks">
+                            <span class="las la-tasks"></span>
+                            <small>Tasks</small>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-content">
+        <header>
+            <div class="header-content">
+                <label for="menu-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                
+                <div class="header-menu">
+                    <label for="">
+                        <span class="las la-search"></span>
+                    </label>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-envelope"></span>
+                        <span class="notify">4</span>
+                    </div>
+                    
+                    <div class="notify-icon">
+                        <span class="las la-bell"></span>
+                        <span class="notify">3</span>
+                    </div>
+                    
+                    <div class="user">
+                        <div class="bg-img" style="background-image: url(img/1.jpeg)"></div>
+                        <span class="las la-power-off"></span>
+                        <span>Logout</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <main>
+            <!-- Admin Profile -->
+            <div id="User" class="page-header">
+                <h1>Admin Profile</h1>
+                <small>Dashboard / Admin</small>
+            </div>
+            
+            <div class="profile-details">
+                
+                <p id="profile-name">Name: Yumbia Kyumu</p>
+                <p id="profile-email">Email: boniyumbia@gmail.com</p>
+            </div>
+            <script>
+                fetch('/get_admin_profile')
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById('profile-name').textContent = 'Name: ' + data.username;
+                    document.getElementById('profile-email').textContent = 'Email: ' + data.email;
+                });
+            </script>
+
+            <!-- User Management -->
+            <div id="home" class="page-header">
+                <h1>User Management</h1>
+                <small>Dashboard / Users</small>
+            </div>
+            <div class="page-content">
+                <div class="user-management">
+                    
+                    <button id="add-user-btn">Add User</button>
+                    <button id="remove-user-btn">Remove User</button>
+                    <table width="100%">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Username</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody id="user-list">
+                            <!-- User data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+                
+                <script>
+                    document.getElementById('add-user-btn').addEventListener('click', function() {
+                        var username = prompt('Enter username:');
+                        var email = prompt('Enter email:');
+                        var password = prompt('Enter password:');
+                        if (username && email && password) {
+                            fetch('/add_user', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ username: username, email: email, password: password }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.message);
+                                fetchUsers();
+                            });
+                        }
+                    });
+                
+                    document.getElementById('remove-user-btn').addEventListener('click', function() {
+                        var username = prompt('Enter username to remove:');
+                        if (username) {
+                            fetch('/remove_user', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ username: username }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                alert(data.message);
+                                fetchUsers();
+                            });
+                        }
+                    });
+                
+                    function fetchUsers() {
+                        fetch('/get_users')
+                        .then(response => response.json())
+                        .then(data => {
+                            const userList = document.getElementById('user-list');
+                            userList.innerHTML = '';
+                            data.forEach((user, index) => {
+                                const row = document.createElement('tr');
+                                row.innerHTML = `
+                                    <td>${index + 1}</td>
+                                    <td>${user.username}</td>
+                                    <td>${user.email}</td>
+                                `;
+                                userList.appendChild(row);
+                            });
+                        });
+                    }
+                
+                    // Fetch users when the page loads
+                    fetchUsers();
+                </script>
+
+
+            <!-- User Queries -->
+            <div id="analytics" class="page-header">
+                <h1>User Queries</h1>
+                <small>Dashboard / Queries</small>
+            </div>
+
+            <div class="mailbox-content">
+                
+                    <table id="queries-table">
+                        <thead>
+                        <tr>
+                            <th style="margin-right: 20px;">ID</th>
+                            <th style="margin-right: 20px;">Username</th>
+                            <th style="margin-right: 20px;">Subject</th>
+                            <th style="margin-right: 20px;">Message</th>
+                            <th>Timestamp</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <!-- Queries will be populated here -->
+                        </tbody>
+                    </table>
+            </div>
+            <script>
+                document.addEventListener('DOMContentLoaded', function() {
+                  fetch('/queries')
+                    .then(response => response.json())
+                    .then(queries => {
+                      const tableBody = document.querySelector('#queries-table tbody');
+                      queries.forEach(query => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                          <td>${query[0]}</td>
+                          <td>${query[1]}</td>
+                          <td>${query[2]}</td>
+                          <td>${query[3]}</td>
+                          <td>${query[4]}</td>
+                        `;
+                        tableBody.appendChild(row);
+                      });
+                    })
+                    .catch(error => console.error('Error fetching queries:', error));
+                });
+              </script>
+            
+            <div id="analytics" class="page-header">
+                <h1>Analytics</h1>
+                <small>Dashboard / Analytics</small>
+            </div>
+            <div class="page-content">
+                <div class="analytics">
+                    <div class="card">
+                        <div class="card-head">
+                            <h2 id="user-activity">0</h2>
+                            <span class="las la-user-friends"></span>
+                        </div>
+                        <div class="card-progress">
+                            <small>User activity this month</small>
+                            <div class="card-indicator">
+                                <div class="indicator one" style="width: 60%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Other cards -->
+                </div>
+                <script>
+                    fetch('/get_analytics')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('user-activity').textContent = data.user_activity;
+                        // Update other analytics data
+                    });
+                </script>
+
+             <!-- Tasks    -->
+            <div id="tasks" class="page-header">
+                <h1>Tasks</h1>
+                <small>Dashboard / Tasks</small>
+            </div>
+            <div class="page-content">
+                <div class="tasks-content">
+                    
+                    <div class="add-task">
+                        <input type="text" id="new-task" placeholder="New Task" />
+                        <input type="date" id="task-date" />
+                        <button id="add-task-btn">Add Task</button>
+                    </div>
+                    <ul id="task-list" class="task-list">
+                        <!-- Tasks will be inserted here -->
+                    </ul>
+                </div>
+                <script>
+                    document.getElementById('add-task-btn').addEventListener('click', function() {
+                        var task = document.getElementById('new-task').value;
+                        var date = document.getElementById('task-date').value;
+                        if (task && date) {
+                            fetch('/add_task', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ task: task, date: date }),
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.message === 'Task added successfully') {
+                                    location.reload();
+                                } else {
+                                    alert(data.message);
+                                }
+                            });
+                        }
+                    });
+                
+                    function fetchTasks() {
+                        fetch('/get_tasks')
+                        .then(response => response.json())
+                        .then(data => {
+                            const taskList = document.getElementById('task-list');
+                            taskList.innerHTML = '';
+                            data.forEach(task => {
+                                const li = document.createElement('li');
+                                li.textContent = `${task.description} - ${task.date}`;
+                                const completeBtn = document.createElement('button');
+                                completeBtn.textContent = 'Complete';
+                                completeBtn.addEventListener('click', function() {
+                                    fetch(`/complete_task/${task.id}`, { method: 'POST' })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.message === 'Task completed successfully') {
+                                            fetchTasks();
+                                        } else {
+                                            alert(data.message);
+                                        }
+                                    });
+                                });
+                                li.appendChild(completeBtn);
+                                taskList.appendChild(li);
+                            });
+                        });
+                    }
+                
+                    fetchTasks();
+                </script>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

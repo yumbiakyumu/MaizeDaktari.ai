@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="header" data-header>
+    <div class="container">
+      <a href="#" class="logo">Maize<span class="span">Daktari</span></a>
+      <nav class="navbar" data-navbar>
+        <button class="nav-toggle-btn" aria-label="close menu" data-nav-toggler>
+          <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
+        </button>
+        <ul class="navbar-list">
+          <li class="navbar-item">
+            <a href="{{ url_for('index') }}#diagonize" class="navbar-link" data-nav-link>Diagnose</a>
+          </li>
+          <li class="navbar-item">
+            <a href="{{ url_for('index') }}#home" class="navbar-link" data-nav-link>History</a>
+          </li>
+          <li class="navbar-item">
+            <a href="{{ url_for('index') }}#blog" class="navbar-link" data-nav-link>Blog</a>
+          </li>
+        </ul>
+      </nav>
+      <div class="auth-links">
+        <p class="user-welcome">{{ session.username }}</p>
+        
+        <a href="/logout" class="btn btn-primary">Logout</a>
+      </div>
+
+      
+      {% if not session.username %}
+      <a href="{{ url_for('register') }}" class="btn btn-primary">Sign Up</a>
+      {% endif %}
+
+      <button class="nav-toggle-btn" aria-label="open menu" data-nav-toggler>
+        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
+      </button>
+      <div class="overlay" data-nav-toggler data-overlay></div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="container">
+        <div class="title-wrapper">
+          <h2 class="h2 section-title">User History</h2>
+        </div>
+
+        <div class="profile-section">
+          <h4>User Name: {{ user_details[0] }}</h4>
+          <p>Email: {{ user_details[1] }}</p>
+        </div>
+
+        <div class="history-section">
+          <h3>Image Submission History</h3>
+          <ul>
+            {% if diagnosis_records %}
+              {% for record in diagnosis_records %}
+                <li>
+                  <img src="{{ url_for('static', filename=record[0].split('static/')[1].replace('\\', '/')) }}" alt="Submitted Image" width="100">
+                  <p>Prediction: {{ record[1] }}</p>
+                  <p>Control Info: {{ record[2] }}</p>
+                  <p>Timestamp: {{ record[3] }}</p>
+                </li>
+              {% endfor %}
+            {% else %}
+              <p>No records found.</p>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-bottom">
+      <div class="container">
+        <p class="copyright">
+          &copy; 2024 Maize.Daktari Made With by
+          <a href="#" class="copyright-link">Yumbia Kyumu</a>
+        </p>
+        <ul class="footer-bottom-list">
+          <li class="footer-bottom-item">
+            <a href="#" class="footer-bottom-link">Terms of Service</a>
+          </li>
+          <li class="footer-bottom-item">
+            <a href="#" class="footer-bottom-link">Privacy Policy</a>
+          </li>
+          <li class="footer-bottom-item">
+            <a href="#" class="footer-bottom-link">Security</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
